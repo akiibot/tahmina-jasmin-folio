@@ -51,7 +51,6 @@ export default function Modal({
           >
             <div className="flex items-start justify-between gap-4 border-b border-stroke/50 p-5 sm:p-6">
               <div>
-                <div className="text-xs tracking-[0.18em] text-muted">CASE STUDY</div>
                 <h3 className="mt-2 font-display text-2xl leading-[1.1]">
                   {title}
                 </h3>
