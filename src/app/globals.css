@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/* Theme tokens (Tailwind color utilities are generated from these via @theme). */
+:root {
+  --bg: #0b0a09;
+  --fg: #f5efe7;
+
+  --surface: rgba(245, 239, 231, 0.06);
+  --surface-2: rgba(245, 239, 231, 0.09);
+  --stroke: rgba(245, 239, 231, 0.14);
+
+  --gold: #c9a56a;
+  --gold-2: #e5cf9b;
+  --rose: #b98286;
+  --rose-2: #e8c9c5;
+  --muted: rgba(245, 239, 231, 0.72);
+
+  --shadow: 0 20px 70px rgba(0, 0, 0, 0.55);
+
+  /* Typography rhythm */
+  --track-tight: -0.02em;
+  --track-wide: 0.08em;
+}
+
+html[data-theme="light"] {
+  --bg: #f7f2ea;
+  --fg: #151313;
+
+  --surface: rgba(15, 13, 13, 0.05);
+  --surface-2: rgba(15, 13, 13, 0.08);
+  --stroke: rgba(15, 13, 13, 0.12);
+
+  --muted: rgba(21, 19, 19, 0.66);
+  --shadow: 0 20px 70px rgba(10, 9, 9, 0.12);
+}
+
+@theme inline {
+  /* Base colors */
+  --color-background: var(--bg);
+  --color-foreground: var(--fg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-stroke: var(--stroke);
+
+  /* Accents */
+  --color-gold: var(--gold);
+  --color-rose: var(--rose);
+  --color-muted: var(--muted);
+
+  /* Fonts are defined in layout.tsx via font variables */
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+}
+
+html {
+  scroll-behavior: auto; /* Lenis manages smooth scroll */
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* Cinematic film grain overlay (subtle, not flashy). */
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* Improve keyboard visibility without being harsh. */
+:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--gold) 75%, transparent);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+@keyframes heroDrift {
+  0% {
+    transform: translate3d(-10%, -10%, 0) rotate(-8deg);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate3d(8%, 6%, 0) rotate(-2deg);
+    opacity: 0.55;
+  }
+  100% {
+    transform: translate3d(-10%, -10%, 0) rotate(-8deg);
+    opacity: 0.35;
+  }
+}
+
+.heroLight {
+  animation: heroDrift 12s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroLight {
+    animation: none;
+  }
+}
