@@ -79,7 +79,7 @@ export const workItems: WorkItem[] = [
     id: "work-4",
     title: "Narration / Promotional Content Package",
     category: "Narration / Promotional Content",
-    facebookUrl: "https://www.facebook.com/share/v/1XpktysCXb/?mibextid=wwXIfr",
+    facebookUrl: "https://www.facebook.com/reel/2381394252294480",
     year: "2024",
     role: "Narration • Script Support • Post Edit",
     description:

@@ -1,10 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Modal from "@/components/ui/Modal";
-import Button from "@/components/ui/Button";
 import WorkPoster from "@/components/work/WorkPoster";
 import type { WorkItem } from "@/types/portfolio";
+import FacebookVideoEmbed from "@/components/work/FacebookVideoEmbed";
+import { ExternalLink, Play } from "lucide-react";
+import { useState } from "react";
 
 export default function WorkModal({
   open,
@@ -25,6 +27,8 @@ export default function WorkModal({
         </div>
 
         <div className="lg:col-span-7">
+          <VideoPlayerBlock item={item} />
+
           <div className="flex flex-wrap items-center gap-2">
             <span className="rounded-full border border-stroke/70 bg-surface/35 px-3 py-1 text-xs text-foreground/85">
               {item.category}
@@ -102,16 +106,79 @@ export default function WorkModal({
             initial={false}
             whileHover={{}}
           >
-            <Button href={item.facebookUrl} variant="outline" className="border-stroke/80">
-              Open Reel / Video
-            </Button>
-            <Button href="#contact" className="border-gold/50">
+            <a
+              href={item.facebookUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-stroke/80 bg-surface/40 px-5 py-2.5 text-sm font-medium tracking-wide transition hover:bg-surface-2/60"
+              aria-label="Open video on Facebook in a new tab"
+            >
+              <ExternalLink className="h-4 w-4" />
+              Open on Facebook
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-b from-gold/85 to-gold/55 px-5 py-2.5 text-sm font-medium tracking-wide text-background shadow-[0_0_45px_rgba(201,165,106,0.20)] transition hover:from-gold/95 hover:to-gold/65"
+            >
               Request a Similar Project
-            </Button>
+            </a>
           </motion.div>
         </div>
       </div>
     </Modal>
+  );
+}
+
+function VideoPlayerBlock({ item }: { item: WorkItem }) {
+  // Lazy render the iframe only after user interaction.
+  const [playing, setPlaying] = useState(false);
+
+  return (
+    <div className="space-y-4">
+      <AnimatePresence mode="wait">
+        {playing ? (
+          <motion.div
+            key="video"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35 }}
+          >
+            <FacebookVideoEmbed item={item} />
+          </motion.div>
+        ) : (
+          <motion.div
+            key="poster"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35 }}
+          >
+            <div className="relative aspect-[9/16] w-full overflow-hidden rounded-3xl border border-stroke/60 bg-background/15">
+              <div className="absolute inset-0 bg-[radial-gradient(900px_420px_at_30%_20%,rgba(201,165,106,0.20),transparent_60%),radial-gradient(600px_380px_at_70%_60%,rgba(185,130,134,0.14),transparent_60%)]" />
+              <div className="absolute inset-0 opacity-60 [background:repeating-linear-gradient(0deg,rgba(255,255,255,0.05),rgba(255,255,255,0.05)_1px,transparent_1px,transparent_7px)] [mix-blend-mode:overlay]" />
+
+              <button
+                type="button"
+                className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-left"
+                onClick={() => setPlaying(true)}
+                aria-label="Play video"
+              >
+                <span className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-stroke/70 bg-background/25 backdrop-blur shadow-[0_30px_90px_rgba(0,0,0,0.45)]">
+                  <Play className="h-6 w-6 text-gold" />
+                </span>
+                <span className="text-xs tracking-[0.18em] text-muted">
+                  TAP TO PLAY
+                </span>
+                <span className="max-w-[85%] text-sm leading-relaxed text-foreground/85">
+                  A cinematic preview of the reel.
+                </span>
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
