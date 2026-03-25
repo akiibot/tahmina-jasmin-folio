@@ -153,7 +153,7 @@ export default function SiteHeader() {
               onClick={() => setOpen(false)}
             />
             <motion.aside
-              className="absolute right-3 top-3 bottom-3 w-[min(360px,calc(100%-24px))] rounded-2xl border border-stroke/60 bg-background/90 backdrop-blur p-4"
+              className="absolute right-3 top-3 bottom-3 w-[min(360px,calc(100%-24px))] overflow-y-auto rounded-2xl border border-stroke/60 bg-background/90 backdrop-blur p-4"
               initial={{ x: 24, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 24, opacity: 0 }}

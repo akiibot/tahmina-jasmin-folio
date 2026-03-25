@@ -27,7 +27,7 @@ export default function Modal({
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-[80] px-4 sm:px-6"
+          className="fixed inset-0 z-[80] px-4 sm:px-6 overflow-y-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -43,6 +43,7 @@ export default function Modal({
             aria-modal="true"
             aria-label={title}
             className="relative mx-auto mt-[8vh] w-full max-w-3xl overflow-hidden rounded-3xl border border-stroke/70 bg-background/95 backdrop-blur shadow-[0_30px_100px_rgba(0,0,0,0.55)]"
+            style={{ maxHeight: "calc(100svh - 16vh)" }}
             initial={{ y: 18, opacity: 0, scale: 0.99 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: 18, opacity: 0, scale: 0.99 }}
@@ -63,7 +64,9 @@ export default function Modal({
               </button>
             </div>
 
-            <div className="p-5 sm:p-6">{children}</div>
+            <div className="p-5 sm:p-6 overflow-y-auto">
+              {children}
+            </div>
           </motion.div>
         </motion.div>
       )}
