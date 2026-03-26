@@ -109,7 +109,7 @@ export default function WorkModal({
               href={item.facebookUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-stroke/80 bg-surface/40 px-5 py-2.5 text-sm font-medium tracking-wide transition hover:bg-surface-2/60"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-stroke/80 bg-surface/40 px-5 py-2.5 text-sm font-medium tracking-wide transition hover:bg-surface-2/60 sm:w-auto"
               aria-label="Open video on Facebook in a new tab"
             >
               <ExternalLink className="h-4 w-4" />
@@ -117,7 +117,7 @@ export default function WorkModal({
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-b from-gold/85 to-gold/55 px-5 py-2.5 text-sm font-medium tracking-wide text-background shadow-[0_0_45px_rgba(201,165,106,0.20)] transition hover:from-gold/95 hover:to-gold/65"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-b from-gold/85 to-gold/55 px-5 py-2.5 text-sm font-medium tracking-wide text-background shadow-[0_0_45px_rgba(201,165,106,0.20)] transition hover:from-gold/95 hover:to-gold/65 sm:w-auto"
             >
               Request a Similar Project
             </a>

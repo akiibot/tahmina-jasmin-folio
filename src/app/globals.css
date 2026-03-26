@@ -59,6 +59,10 @@ html {
   scroll-behavior: auto; /* Lenis manages smooth scroll */
 }
 
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
 body {
   background: var(--bg);
   color: var(--fg);
@@ -114,6 +118,12 @@ body {
   .heroLight {
     filter: blur(22px);
     opacity: 0.3;
+  }
+}
+
+@media (min-width: 768px) {
+  section[id] {
+    scroll-margin-top: 6.25rem;
   }
 }
 

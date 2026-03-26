@@ -21,7 +21,7 @@ export default function SiteFooter() {
               <Mail className="mt-0.5 h-4 w-4 text-gold" />
               <a
                 href="mailto:tahminajasmin1985@gmail.com"
-                className="hover:text-foreground transition-colors"
+                className="break-all transition-colors hover:text-foreground"
               >
                 tahminajasmin1985@gmail.com
               </a>
@@ -65,4 +65,3 @@ export default function SiteFooter() {
     </footer>
   );
 }
-

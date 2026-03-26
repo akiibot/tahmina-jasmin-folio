@@ -67,7 +67,7 @@ export default function ContactSection() {
                   <div>
                     <div className="text-xs tracking-[0.18em] text-muted">EMAIL</div>
                     <a
-                      className="mt-1 block text-sm text-foreground/90 hover:text-foreground transition-colors"
+                      className="mt-1 block break-all text-sm text-foreground/90 transition-colors hover:text-foreground"
                       href={`mailto:${profile.email}`}
                     >
                       {profile.email}

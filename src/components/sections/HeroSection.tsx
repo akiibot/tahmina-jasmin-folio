@@ -61,7 +61,7 @@ export default function HeroSection() {
                 CREATIVE MULTIMEDIA
               </div>
 
-              <h1 className="mt-6 font-display text-[clamp(3.1rem,5.5vw,5.2rem)] leading-[0.98] tracking-[var(--track-tight)]">
+              <h1 className="mt-6 font-display text-[clamp(2.35rem,8vw,5.2rem)] leading-[0.98] tracking-[var(--track-tight)]">
                 <SplitText
                   text={profile.name}
                   className="block"
@@ -135,7 +135,7 @@ export default function HeroSection() {
                     CINEMATIC PROFILE FRAME
                   </div>
 
-                  <div className="mt-5 grid grid-cols-2 gap-4">
+                  <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
                     {[
                       { label: "Editing", value: "Video + Audio" },
                       { label: "Narration", value: "Voice-led Story" },

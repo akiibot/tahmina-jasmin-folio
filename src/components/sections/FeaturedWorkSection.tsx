@@ -57,9 +57,9 @@ export default function FeaturedWorkSection() {
                   <div className="absolute inset-x-0 bottom-0 p-4">
                     <motion.div
                       className={cn(
-                        "rounded-2xl border border-stroke/60 bg-background/70 backdrop-blur p-4",
-                        "opacity-0 translate-y-6 transition-all duration-300",
-                        "group-hover:opacity-100 group-hover:translate-y-0"
+                        "rounded-2xl border border-stroke/60 bg-background/75 p-3 backdrop-blur sm:p-4",
+                        "opacity-100 translate-y-0 md:opacity-0 md:translate-y-6 transition-all duration-300",
+                        "md:group-hover:opacity-100 md:group-hover:translate-y-0"
                       )}
                     >
                       <div className="text-xs tracking-[0.18em] text-muted">
@@ -96,4 +96,3 @@ export default function FeaturedWorkSection() {
     </section>
   );
 }
-

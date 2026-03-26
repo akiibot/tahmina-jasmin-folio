@@ -37,6 +37,30 @@ export default function SiteHeader() {
     document.documentElement.dataset.theme = theme;
   }, [theme]);
 
+  useEffect(() => {
+    if (!open) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+
+    const onResize = () => {
+      if (window.innerWidth >= 768) setOpen(false);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [open]);
+
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
@@ -133,6 +157,8 @@ export default function SiteHeader() {
               type="button"
               className="inline-flex items-center justify-center rounded-full border border-stroke/80 bg-surface/40 p-3"
               aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
               onClick={() => setOpen((v) => !v)}
             >
               {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -144,7 +170,7 @@ export default function SiteHeader() {
       <AnimatePresence>
         {open && (
           <motion.div
-            className="fixed inset-0 z-[60] md:hidden"
+            className="fixed inset-0 z-[70] md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -156,7 +182,8 @@ export default function SiteHeader() {
               onClick={() => setOpen(false)}
             />
             <motion.aside
-              className="absolute right-3 top-3 bottom-3 w-[min(360px,calc(100%-24px))] overflow-y-auto rounded-2xl border border-stroke/60 bg-background/90 backdrop-blur p-4"
+              id="mobile-menu"
+              className="absolute bottom-2 right-2 top-2 w-[min(380px,calc(100%-1rem))] overflow-y-auto rounded-2xl border border-stroke/60 bg-background/95 p-4 backdrop-blur md:right-3 md:top-3 md:bottom-3 md:w-[min(360px,calc(100%-24px))]"
               initial={{ x: 24, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: 24, opacity: 0 }}
