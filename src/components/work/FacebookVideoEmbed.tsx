@@ -1,5 +1,3 @@
-"use client";
-
 import type { WorkItem } from "@/types/portfolio";
 
 function facebookPluginSrc(facebookUrl: string) {
@@ -12,7 +10,8 @@ function facebookPluginSrc(facebookUrl: string) {
 
 function normalizeToReelUrl(facebookUrl: string) {
   try {
-    const u = new URL(facebookUrl);
+    const cleaned = ensureHttps(stripHash(facebookUrl));
+    const u = new URL(cleaned);
     const parts = u.pathname.split("/").filter(Boolean);
     // Typical formats we might get:
     // - /share/v/<id>
@@ -22,22 +21,35 @@ function normalizeToReelUrl(facebookUrl: string) {
       const id = parts[2];
       if (id) return `${u.origin}/reel/${id}`;
     }
-    return facebookUrl;
+    return cleaned;
   } catch {
-    return facebookUrl;
+    return ensureHttps(stripHash(facebookUrl));
   }
+}
+
+function stripHash(url: string) {
+  const i = url.indexOf("#");
+  return i >= 0 ? url.slice(0, i) : url;
+}
+
+function ensureHttps(url: string) {
+  const trimmed = url.trim();
+  if (trimmed.startsWith("http://") || trimmed.startsWith("https://")) return trimmed;
+  return `https://${trimmed.replace(/^\/+/, "")}`;
 }
 
 export default function FacebookVideoEmbed({
   item,
+  aspectClassName = "aspect-[9/16] lg:aspect-[16/9]",
 }: {
   item: WorkItem;
+  aspectClassName?: string;
 }) {
   const src = facebookPluginSrc(item.facebookUrl);
 
   return (
     <div className="relative w-full overflow-hidden rounded-3xl border border-stroke/60 bg-background/15">
-      <div className="relative aspect-[9/16] w-full">
+      <div className={`relative w-full ${aspectClassName}`}>
         <iframe
           title={`Facebook reel: ${item.title}`}
           className="absolute inset-0 h-full w-full"

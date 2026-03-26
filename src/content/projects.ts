@@ -12,7 +12,7 @@ export const workItems: WorkItem[] = [
     id: "work-1",
     title: "Voice-led Brand Promotion Reel",
     category: "Brand Promotion",
-    facebookUrl: "https://www.facebook.com/share/v/181HGbTwrA/?mibextid=wwXIfr",
+    facebookUrl: "https://www.facebook.com/reel/1239931281688808",
     year: "2025",
     role: "Narration • Editing • Caption Direction",
     description:
@@ -35,7 +35,7 @@ export const workItems: WorkItem[] = [
     id: "work-2",
     title: "Cinematic Visual Teaser Edit",
     category: "Cinematic Video",
-    facebookUrl: "https://www.facebook.com/share/r/1B3bJyLowK/?mibextid=wwXIfr",
+    facebookUrl: "https://www.facebook.com/reel/843296321832183",
     year: "2025",
     role: "Cinematic Editing • Visual Storyboarding",
     description:
@@ -57,7 +57,7 @@ export const workItems: WorkItem[] = [
     id: "work-3",
     title: "Social Reel — Community Spotlight",
     category: "Social Media Reel",
-    facebookUrl: "https://www.facebook.com/share/v/1C5LBUr6c2/?mibextid=wwXIfr",
+    facebookUrl: "https://www.facebook.com/reel/889900937026896",
     year: "2024",
     role: "Editing • Caption Strategy • Promotion",
     description:
@@ -101,7 +101,7 @@ export const workItems: WorkItem[] = [
     id: "reel-1",
     title: "B2B2C Brand Reach — Quick Reel",
     category: "Brand Promotion",
-    facebookUrl: "https://www.facebook.com/share/r/1BibRz1cDd/?mibextid=wwXIfr",
+    facebookUrl: "https://www.facebook.com/reel/2381394252294480",
     year: "2025",
     role: "Brand Promotion • Reel Edit",
     description:
@@ -119,7 +119,7 @@ export const workItems: WorkItem[] = [
     id: "reel-2",
     title: "Product Benefit Reel — Cinematic Edit",
     category: "Cinematic Video",
-    facebookUrl: "https://www.facebook.com/share/r/18dAJfscAf/?mibextid=wwXIfr",
+    facebookUrl: "https://www.facebook.com/reel/1990212875063266",
     year: "2024",
     role: "Cinematic Editing • Audio & Caption Polish",
     description:

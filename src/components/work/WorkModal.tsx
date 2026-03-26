@@ -144,7 +144,7 @@ function VideoPlayerBlock({ item }: { item: WorkItem }) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
           >
-            <FacebookVideoEmbed item={item} />
+            <FacebookVideoEmbed item={item} aspectClassName="aspect-[9/16] lg:aspect-[16/9]" />
           </motion.div>
         ) : (
           <motion.div
