@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, Moon, Sun, X } from "lucide-react";
@@ -17,6 +17,7 @@ const navItems = [
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const headerRef = useRef<HTMLElement | null>(null);
   const [theme, setTheme] = useState<"dark" | "light">(() => {
     if (typeof window === "undefined") return "dark";
     const htmlTheme = document.documentElement.dataset.theme;
@@ -67,6 +68,39 @@ export default function SiteHeader() {
     window.localStorage.setItem("theme", next);
   };
 
+  const scrollToSection = useCallback((href: string) => {
+    if (!href.startsWith("#")) return;
+    const id = href.slice(1);
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    const headerHeight = headerRef.current?.offsetHeight ?? 64;
+    const top =
+      target.getBoundingClientRect().top + window.scrollY - (headerHeight + 18);
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+    if (window.location.hash !== href) {
+      window.history.replaceState(null, "", href);
+    }
+  }, []);
+
+  const onNavLinkClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      e.preventDefault();
+      setOpen(false);
+      window.requestAnimationFrame(() => {
+        scrollToSection(href);
+      });
+    },
+    [scrollToSection]
+  );
+
   const brandMark = useMemo(
     () => (
       <span className="inline-flex items-center gap-2">
@@ -82,6 +116,7 @@ export default function SiteHeader() {
 
   return (
     <header
+      ref={headerRef}
       className={cn(
         "sticky top-0 z-50",
         scrolled
@@ -114,6 +149,7 @@ export default function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className="text-sm text-foreground/80 hover:text-foreground transition-colors"
+                onClick={(e) => onNavLinkClick(e, item.href)}
               >
                 {item.label}
               </a>
@@ -121,6 +157,7 @@ export default function SiteHeader() {
             <a
               href="#contact"
               className="ml-2 inline-flex items-center justify-center rounded-full border border-stroke/80 bg-surface/40 px-4 py-2 text-sm text-foreground/90 transition hover:bg-surface-2/60"
+              onClick={(e) => onNavLinkClick(e, "#contact")}
             >
               Let&apos;s Connect
             </a>
@@ -207,7 +244,7 @@ export default function SiteHeader() {
                     key={item.href}
                     href={item.href}
                     className="rounded-xl border border-stroke/60 bg-surface/30 px-4 py-3 text-sm text-foreground/90 transition hover:bg-surface/60"
-                    onClick={() => setOpen(false)}
+                    onClick={(e) => onNavLinkClick(e, item.href)}
                   >
                     {item.label}
                   </a>
@@ -215,7 +252,7 @@ export default function SiteHeader() {
                 <a
                   href="#contact"
                   className="mt-2 rounded-xl border border-gold/50 bg-gradient-to-b from-gold/18 to-transparent px-4 py-3 text-sm text-foreground/95 transition hover:from-gold/26"
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => onNavLinkClick(e, "#contact")}
                 >
                   Let&apos;s Connect
                 </a>
