@@ -136,6 +136,8 @@ export default function ContactSection() {
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Your name"
+                        name="name"
+                        autoComplete="name"
                         required
                       />
                     </label>
@@ -144,10 +146,14 @@ export default function ContactSection() {
                         EMAIL
                       </span>
                       <input
+                        type="email"
                         className="w-full rounded-2xl border border-stroke/60 bg-background/15 px-4 py-3 text-sm text-foreground/90 outline-none focus:border-gold/60"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="you@example.com"
+                        name="email"
+                        autoComplete="email"
+                        inputMode="email"
                         required
                       />
                     </label>
@@ -162,6 +168,8 @@ export default function ContactSection() {
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder="What kind of video/reel/narration do you need? Timeline, brand goals, and any references are welcome."
+                      name="message"
+                      autoComplete="off"
                       required
                     />
                   </label>
@@ -202,4 +210,3 @@ export default function ContactSection() {
     </section>
   );
 }
-

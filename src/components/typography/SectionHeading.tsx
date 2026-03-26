@@ -31,11 +31,10 @@ export default function SectionHeading({
         {title}
       </h2>
       {subtitle ? (
-        <p className="max-w-2xl text-base leading-relaxed text-foreground/78">
+        <p className="max-w-2xl text-base leading-relaxed text-foreground/84">
           {subtitle}
         </p>
       ) : null}
     </div>
   );
 }
-

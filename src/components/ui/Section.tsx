@@ -4,17 +4,14 @@ export default function Section({
   id,
   children,
   className,
-  ariaLabel,
 }: {
   id?: string;
   children: ReactNode;
   className?: string;
-  ariaLabel?: string;
 }) {
   return (
-    <section
+    <div
       id={id}
-      aria-label={ariaLabel}
       className={[
         "relative scroll-mt-24",
         "mx-auto w-full max-w-6xl px-4 sm:px-6",
@@ -22,7 +19,6 @@ export default function Section({
       ].join(" ")}
     >
       {children}
-    </section>
+    </div>
   );
 }
-

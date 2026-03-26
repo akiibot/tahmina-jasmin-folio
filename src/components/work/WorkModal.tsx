@@ -1,12 +1,11 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Modal from "@/components/ui/Modal";
 import WorkPoster from "@/components/work/WorkPoster";
 import type { WorkItem } from "@/types/portfolio";
 import FacebookVideoEmbed from "@/components/work/FacebookVideoEmbed";
-import { ExternalLink, Play } from "lucide-react";
-import { useState } from "react";
+import { ExternalLink } from "lucide-react";
 
 export default function WorkModal({
   open,
@@ -21,12 +20,12 @@ export default function WorkModal({
 
   return (
     <Modal open={open} onClose={onClose} title={item.title}>
-      <div className="grid gap-6 lg:grid-cols-12">
+      <div className="grid gap-5 lg:grid-cols-12 lg:items-start">
         <div className="lg:col-span-5">
-          <WorkPoster item={item} className="lg:sticky lg:top-6" />
+          <WorkPoster item={item} />
         </div>
 
-        <div className="lg:col-span-7">
+        <div className="space-y-4 lg:col-span-7">
           <VideoPlayerBlock item={item} />
 
           <div className="flex flex-wrap items-center gap-2">
@@ -38,11 +37,11 @@ export default function WorkModal({
             </span>
           </div>
 
-          <p className="mt-4 text-sm leading-relaxed text-foreground/78">
+          <p className="text-sm leading-relaxed text-foreground/78">
             {item.description}
           </p>
 
-          <div className="mt-5 space-y-4">
+          <div className="space-y-4">
             <div>
               <div className="text-xs tracking-[0.18em] text-muted">ROLE</div>
               <div className="mt-2 text-sm text-foreground/85">
@@ -102,7 +101,7 @@ export default function WorkModal({
           </div>
 
           <motion.div
-            className="mt-7 flex flex-wrap items-center gap-3"
+            className="flex flex-wrap items-center gap-3 pt-1"
             initial={false}
             whileHover={{}}
           >
@@ -130,55 +129,16 @@ export default function WorkModal({
 }
 
 function VideoPlayerBlock({ item }: { item: WorkItem }) {
-  // Lazy render the iframe only after user interaction.
-  const [playing, setPlaying] = useState(false);
-
   return (
     <div className="space-y-4">
-      <AnimatePresence mode="wait">
-        {playing ? (
-          <motion.div
-            key="video"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.35 }}
-          >
-            <FacebookVideoEmbed item={item} aspectClassName="aspect-[9/16] lg:aspect-[16/9]" />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="poster"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.35 }}
-          >
-            <div className="relative aspect-[9/16] w-full overflow-hidden rounded-3xl border border-stroke/60 bg-background/15">
-              <div className="absolute inset-0 bg-[radial-gradient(900px_420px_at_30%_20%,rgba(201,165,106,0.20),transparent_60%),radial-gradient(600px_380px_at_70%_60%,rgba(185,130,134,0.14),transparent_60%)]" />
-              <div className="absolute inset-0 opacity-60 [background:repeating-linear-gradient(0deg,rgba(255,255,255,0.05),rgba(255,255,255,0.05)_1px,transparent_1px,transparent_7px)] [mix-blend-mode:overlay]" />
-
-              <button
-                type="button"
-                className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-left"
-                onClick={() => setPlaying(true)}
-                aria-label="Play video"
-              >
-                <span className="inline-flex h-14 w-14 items-center justify-center rounded-full border border-stroke/70 bg-background/25 backdrop-blur shadow-[0_30px_90px_rgba(0,0,0,0.45)]">
-                  <Play className="h-6 w-6 text-gold" />
-                </span>
-                <span className="text-xs tracking-[0.18em] text-muted">
-                  TAP TO PLAY
-                </span>
-                <span className="max-w-[85%] text-sm leading-relaxed text-foreground/85">
-                  A cinematic preview of the reel.
-                </span>
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <motion.div
+        key="video"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35 }}
+      >
+        <FacebookVideoEmbed item={item} aspectClassName="aspect-[9/16] lg:aspect-[16/9]" />
+      </motion.div>
     </div>
   );
 }
-

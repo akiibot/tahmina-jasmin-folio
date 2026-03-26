@@ -37,7 +37,7 @@ export default function HeroSection() {
         aria-hidden="true"
       >
         <motion.div
-          className="absolute inset-0 bg-[radial-gradient(1200px_700px_at_30%_10%,rgba(201,165,106,0.22),transparent_55%),radial-gradient(900px_520px_at_80%_60%,rgba(185,130,134,0.16),transparent_60%)]"
+          className="absolute inset-0 bg-[radial-gradient(980px_620px_at_28%_8%,rgba(201,165,106,0.18),transparent_56%),radial-gradient(760px_460px_at_80%_60%,rgba(185,130,134,0.14),transparent_60%)]"
           style={{
             y: reduce ? undefined : bgY,
             scale: reduce ? undefined : bgScale,
@@ -45,8 +45,8 @@ export default function HeroSection() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/0 via-background/20 to-background" />
 
-        <div className="absolute left-[10%] top-[18%] h-[220px] w-[520px] rounded-[999px] bg-gold/15 blur-[42px] heroLight" />
-        <div className="absolute right-[6%] top-[38%] h-[260px] w-[520px] rounded-[999px] bg-rose/12 blur-[44px] heroLight" />
+        <div className="heroLight absolute left-[10%] top-[18%] hidden h-[200px] w-[420px] rounded-[999px] bg-gold/14 blur-[30px] sm:block" />
+        <div className="heroLight absolute right-[6%] top-[38%] hidden h-[220px] w-[420px] rounded-[999px] bg-rose/10 blur-[32px] sm:block" />
       </div>
 
       <Section className="min-h-[calc(100svh-4rem)] flex flex-col justify-center py-14 sm:py-20">
@@ -121,11 +121,11 @@ export default function HeroSection() {
               transition={{ delay: 0.2, duration: 0.75 }}
               className="relative"
             >
-              <div className="absolute -inset-2 rounded-[28px] bg-gradient-to-b from-gold/18 to-rose/10 blur-[22px]" />
+              <div className="absolute -inset-2 rounded-[28px] bg-gradient-to-b from-gold/14 to-rose/8 blur-[14px]" />
 
-              <div className="relative overflow-hidden rounded-[28px] border border-stroke/70 bg-surface/30 shadow-[0_40px_120px_rgba(0,0,0,0.35)]">
+              <div className="relative overflow-hidden rounded-[28px] border border-stroke/70 bg-surface/30 shadow-[0_24px_80px_rgba(0,0,0,0.3)]">
                 <div className="absolute inset-0 bg-[radial-gradient(900px_420px_at_30%_20%,rgba(201,165,106,0.18),transparent_60%),radial-gradient(600px_380px_at_70%_60%,rgba(185,130,134,0.12),transparent_60%)]" />
-                <div className="absolute inset-0 opacity-60 [background:repeating-linear-gradient(0deg,rgba(255,255,255,0.05),rgba(255,255,255,0.05)_1px,transparent_1px,transparent_6px)] [mix-blend-mode:overlay]" />
+                <div className="absolute inset-0 opacity-40 [background:repeating-linear-gradient(0deg,rgba(255,255,255,0.05),rgba(255,255,255,0.05)_1px,transparent_1px,transparent_6px)] [mix-blend-mode:overlay]" />
 
                 <motion.div
                   className="relative p-6"
@@ -207,4 +207,3 @@ export default function HeroSection() {
     </section>
   );
 }
-

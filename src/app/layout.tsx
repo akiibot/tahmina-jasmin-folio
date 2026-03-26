@@ -1,28 +1,20 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Providers from "./providers";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 
-const displayFont = Cormorant_Garamond({
-  subsets: ["latin"],
-  variable: "--font-display",
-  weight: ["400", "500", "600", "700"],
-});
-
-const bodyFont = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["300", "400", "500", "600", "700"],
-});
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const themeInitScript =
+  "try{var t=localStorage.getItem('theme');document.documentElement.dataset.theme=(t==='light'||t==='dark')?t:'dark';}catch(e){document.documentElement.dataset.theme='dark';}";
 
 export const metadata: Metadata = {
   title: "Tahmina Jasmin — Creative Multimedia Storyteller",
   description:
     "Premium cinematic portfolio for Tahmina Jasmin: video editing, audio editing, narration, brand promotion, and digital marketing.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
-  metadataBase: new URL("https://example.com"),
+  metadataBase: new URL(siteUrl),
 };
 
 export default function RootLayout({
@@ -33,9 +25,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${displayFont.variable} ${bodyFont.variable} h-full antialiased`}
+      className="h-full antialiased"
+      data-theme="dark"
+      suppressHydrationWarning
     >
       <body className="min-h-full bg-background text-foreground">
+        <Script id="theme-init" strategy="beforeInteractive">
+          {themeInitScript}
+        </Script>
         <Providers>
           <div className="relative min-h-screen">
             <div className="grain" aria-hidden="true" />

@@ -10,6 +10,11 @@ export default function WorkPoster({
 }) {
   const variant = item.poster.variant;
   const label = item.poster.label;
+  const deliverableCount = item.deliverables.length;
+  const toolCount = item.tools.length;
+
+  const pluralize = (count: number, noun: string) =>
+    `${count} ${noun}${count === 1 ? "" : "s"}`;
 
   const gradients: Record<number, string> = {
     1: "from-gold/22 via-surface/10 to-rose/14",
@@ -46,11 +51,15 @@ export default function WorkPoster({
           {item.year} • {item.category}
         </div>
 
-        <div className="mt-6 h-[10px] w-full rounded-full bg-foreground/10">
-          <div className="h-full w-[68%] rounded-full bg-gold/60" />
+        <div className="mt-5 flex flex-wrap gap-2">
+          <span className="rounded-full border border-stroke/60 bg-background/15 px-2.5 py-1 text-[11px] tracking-wide text-foreground/80">
+            {pluralize(deliverableCount, "deliverable")}
+          </span>
+          <span className="rounded-full border border-stroke/60 bg-background/15 px-2.5 py-1 text-[11px] tracking-wide text-foreground/80">
+            {pluralize(toolCount, "tool")}
+          </span>
         </div>
       </div>
     </div>
   );
 }
-

@@ -18,30 +18,28 @@ export default function CertificationsSection() {
           />
         </Reveal>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 space-y-3">
           {certifications.map((c, i) => (
             <Reveal key={c.id} delayMs={i * 90}>
-              <motion.div
-                whileHover={{ y: -4 }}
-                className="rounded-3xl border border-stroke/60 bg-surface/25 p-6"
+              <motion.article
+                whileHover={{ y: -2 }}
+                className="grid gap-4 border border-stroke/55 bg-surface/20 px-5 py-5 sm:px-6 md:grid-cols-[120px_1fr_auto] md:items-start"
               >
                 <div className="text-xs tracking-[0.18em] text-muted">
                   {c.period}
                 </div>
-                <div className="mt-3 font-display text-2xl leading-[1.12] tracking-[var(--track-tight)]">
-                  {c.title}
+                <div>
+                  <h3 className="font-display text-[clamp(1.45rem,2.7vw,2rem)] leading-[1.1] tracking-[var(--track-tight)]">
+                    {c.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/84">
+                    {c.issuer}
+                  </p>
                 </div>
-                <div className="mt-3 text-sm leading-relaxed text-foreground/80">
-                  {c.issuer}
+                <div className="self-start justify-self-start rounded-full border border-gold/35 bg-gold/8 px-3 py-1 text-xs text-foreground/88 md:justify-self-end">
+                  In active use
                 </div>
-
-                <div className="mt-6 h-[1px] w-full bg-stroke/50" />
-
-                <div className="mt-5 text-sm text-foreground/78">
-                  Used in practice: content planning, narration tone, and digital
-                  reach.
-                </div>
-              </motion.div>
+              </motion.article>
             </Reveal>
           ))}
         </div>
@@ -49,4 +47,3 @@ export default function CertificationsSection() {
     </section>
   );
 }
-

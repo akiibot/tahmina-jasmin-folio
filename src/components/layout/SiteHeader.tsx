@@ -19,6 +19,8 @@ export default function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">(() => {
     if (typeof window === "undefined") return "dark";
+    const htmlTheme = document.documentElement.dataset.theme;
+    if (htmlTheme === "light" || htmlTheme === "dark") return htmlTheme;
     const stored = window.localStorage.getItem("theme");
     if (stored === "light" || stored === "dark") return stored;
     return "dark";
@@ -38,7 +40,6 @@ export default function SiteHeader() {
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
-    document.documentElement.dataset.theme = next;
     window.localStorage.setItem("theme", next);
   };
 
@@ -102,7 +103,7 @@ export default function SiteHeader() {
 
             <button
               type="button"
-              className="ml-1 inline-flex items-center justify-center rounded-full border border-stroke/80 bg-surface/40 p-2 text-foreground/90 transition hover:bg-surface-2/60"
+              className="ml-1 inline-flex items-center justify-center rounded-full border border-stroke/80 bg-surface/40 p-3 text-foreground/90 transition hover:bg-surface-2/60"
               aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
               onClick={toggleTheme}
             >
@@ -117,7 +118,7 @@ export default function SiteHeader() {
           <div className="md:hidden inline-flex items-center gap-2">
             <button
               type="button"
-              className="inline-flex items-center justify-center rounded-full border border-stroke/80 bg-surface/40 p-2 text-foreground/90 transition hover:bg-surface-2/60"
+              className="inline-flex items-center justify-center rounded-full border border-stroke/80 bg-surface/40 p-3 text-foreground/90 transition hover:bg-surface-2/60"
               aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
               onClick={toggleTheme}
             >
@@ -129,7 +130,8 @@ export default function SiteHeader() {
             </button>
 
             <button
-              className="inline-flex items-center justify-center rounded-full border border-stroke/80 bg-surface/40 p-2"
+              type="button"
+              className="inline-flex items-center justify-center rounded-full border border-stroke/80 bg-surface/40 p-3"
               aria-label={open ? "Close menu" : "Open menu"}
               onClick={() => setOpen((v) => !v)}
             >
@@ -148,6 +150,7 @@ export default function SiteHeader() {
             exit={{ opacity: 0 }}
           >
             <button
+              type="button"
               className="absolute inset-0 bg-black/60"
               aria-label="Close menu overlay"
               onClick={() => setOpen(false)}
@@ -162,7 +165,8 @@ export default function SiteHeader() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">{brandMark}</div>
                 <button
-                  className="rounded-full border border-stroke/80 bg-surface/40 p-2"
+                  type="button"
+                  className="rounded-full border border-stroke/80 bg-surface/40 p-3"
                   aria-label="Close menu"
                   onClick={() => setOpen(false)}
                 >
@@ -201,4 +205,3 @@ export default function SiteHeader() {
     </header>
   );
 }
-

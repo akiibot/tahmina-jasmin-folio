@@ -21,6 +21,7 @@ function SkillCard({ item }: { item: SkillItem }) {
     <motion.div
       whileHover={{ y: -4 }}
       className="group relative overflow-hidden rounded-3xl border border-stroke/60 bg-surface/25"
+      tabIndex={0}
     >
       <div className="absolute inset-0 bg-[radial-gradient(900px_260px_at_20%_0%,rgba(201,165,106,0.18),transparent_52%),radial-gradient(700px_220px_at_90%_80%,rgba(185,130,134,0.14),transparent_55%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
@@ -64,7 +65,7 @@ function SkillCard({ item }: { item: SkillItem }) {
           animate={false}
         >
           <motion.div
-            className="rounded-2xl border border-stroke/50 bg-background/15 p-4"
+            className="rounded-2xl border border-stroke/50 bg-background/15 p-4 opacity-0 translate-y-2 transition-all duration-250 group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0"
             initial={{ opacity: 0, y: 10 }}
             whileHover={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.25 }}
@@ -105,4 +106,3 @@ export default function SkillsSection() {
     </section>
   );
 }
-
