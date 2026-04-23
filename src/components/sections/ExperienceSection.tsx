@@ -1,10 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Mic2, Users, Film, Megaphone } from "lucide-react";
 import Section from "@/components/ui/Section";
 import SectionHeading from "@/components/typography/SectionHeading";
 import Reveal from "@/components/ui/Reveal";
 import { experience } from "@/content/experience";
+
+const roleIcons: Record<string, typeof Mic2> = {
+  "exp-1": Mic2,
+  "exp-2": Users,
+  "exp-3": Film,
+  "exp-4": Megaphone,
+};
 
 export default function ExperienceSection() {
   return (
@@ -13,87 +21,57 @@ export default function ExperienceSection() {
         <Reveal>
           <SectionHeading
             kicker="EXPERIENCE"
-            title="Roles that shaped her voice, her edits, and her promotion craft."
-            subtitle="A storytelling-led career path—built from narration, community engagement, cinematic editing, and brand-forward communication."
+            title="Roles that shaped voice, edits, and promotion."
+            subtitle="A storytelling-led career from narration to brand content."
           />
         </Reveal>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:items-start">
-          <div className="lg:col-span-4">
-            <motion.div
-              className="rounded-3xl border border-stroke/60 bg-surface/25 p-6 lg:sticky lg:top-24"
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-10% 0px" }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="text-xs tracking-[0.18em] text-muted">
-                STORYING THROUGH WORK
-              </div>
-              <div className="mt-4 font-display text-2xl leading-[1.12] tracking-[var(--track-tight)]">
-                Voice + Visual Rhythm
-              </div>
-              <p className="mt-3 text-sm leading-relaxed text-foreground/78">
-                Each role contributed something essential: tone, timing, trust,
-                community clarity, and the craft of turning attention into action.
-              </p>
+        <div className="mt-12 grid gap-4 sm:grid-cols-2">
+          {experience.map((role, idx) => {
+            const Icon = roleIcons[role.id] || Mic2;
+            return (
+              <Reveal key={role.id} delayMs={idx * 80}>
+                <motion.div
+                  whileHover={{ y: -3 }}
+                  className="group relative overflow-hidden rounded-3xl border border-stroke/60 bg-surface/25 p-5"
+                >
+                  <div className="absolute inset-0 bg-[radial-gradient(600px_200px_at_80%_100%,rgba(185,130,134,0.12),transparent_50%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-              <div className="mt-5 rounded-2xl border border-stroke/50 bg-background/15 p-4">
-                <div className="text-xs tracking-[0.18em] text-muted">FOCUS</div>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {["Narration", "Editing", "Promotion", "Moderation"].map((x) => (
-                    <span
-                      key={x}
-                      className="rounded-full border border-stroke/60 bg-surface/30 px-3 py-1 text-xs text-foreground/80"
-                    >
-                      {x}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          <div className="lg:col-span-8">
-            <div className="relative pl-6 space-y-6">
-              <div className="absolute left-2 top-3 bottom-3 w-px bg-stroke/60" />
-              {experience.map((role, idx) => (
-                <Reveal key={role.id} delayMs={idx * 90}>
-                  <div className="relative rounded-3xl border border-stroke/60 bg-surface/25 p-6">
-                    <div className="absolute left-[-0.4rem] top-6 flex h-10 w-10 items-center justify-center">
-                      <span className="h-3.5 w-3.5 rounded-full bg-gold shadow-[0_0_30px_rgba(201,165,106,0.35)]" />
-                    </div>
-                    <div className="flex flex-wrap items-center justify-between gap-3">
-                      <div>
-                        <div className="text-xs tracking-[0.18em] text-muted">
-                          {role.period}
-                        </div>
-                        <div className="mt-2 font-display text-xl leading-[1.1]">
-                          {role.title}
-                        </div>
+                  <div className="relative">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-stroke/50 bg-background/30 text-gold">
+                        <Icon className="h-5 w-5" />
                       </div>
+                      <span className="rounded-full border border-stroke/50 bg-background/15 px-3 py-1 text-xs text-muted">
+                        {role.period}
+                      </span>
                     </div>
-                    <p className="mt-4 text-sm leading-relaxed text-foreground/78">
+
+                    <h3 className="mt-4 font-display text-lg leading-[1.15]">
+                      {role.title}
+                    </h3>
+
+                    <p className="mt-2 text-sm leading-relaxed text-foreground/70 line-clamp-2">
                       {role.description}
                     </p>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {role.focus.map((f) => (
+
+                    <div className="mt-4 flex flex-wrap gap-1.5">
+                      {role.focus.slice(0, 2).map((f) => (
                         <span
                           key={f}
-                          className="rounded-full border border-stroke/60 bg-background/15 px-3 py-1 text-xs text-foreground/80"
+                          className="rounded-full border border-stroke/50 bg-background/15 px-2.5 py-0.5 text-[11px] text-foreground/70"
                         >
                           {f}
                         </span>
                       ))}
                     </div>
                   </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
+                </motion.div>
+              </Reveal>
+            );
+          })}
         </div>
       </Section>
     </section>
   );
 }
-

@@ -4,6 +4,7 @@ import "./globals.css";
 import Providers from "./providers";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
+import AuroraBackground from "@/components/layout/AuroraBackground";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 const themeInitScript =
@@ -34,6 +35,7 @@ export default function RootLayout({
           {themeInitScript}
         </Script>
         <Providers>
+          <AuroraBackground />
           <div className="relative min-h-screen">
             <div className="grain" aria-hidden="true" />
             <SiteHeader />

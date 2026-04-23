@@ -5,50 +5,28 @@ export const experience: TimelineRole[] = [
     id: "exp-1",
     title: "Commercial Narrator",
     period: "Ongoing",
-    description:
-      "Voice-led promotional storytelling that helps brands sound confident, warm, and audience-ready.",
-    focus: [
-      "Narration direction and script tone",
-      "Voice clarity through audio editing",
-      "Value-first, hook-first promotional flow",
-    ],
+    description: "Voice-led promotional storytelling for brands seeking warmth and clarity.",
+    focus: ["Script direction", "Voice clarity"],
   },
   {
     id: "exp-2",
-    title: "Shopno Bunon ID Owner & Moderator",
+    title: "Shopno Bunon — Owner & Moderator",
     period: "2019 – 2023",
-    description:
-      "Managed community interaction with content moderation and consistent audience communication.",
-    focus: [
-      "Content moderation & engagement guidance",
-      "Community-safe tone and posting consistency",
-      "Audience feedback translation into better content",
-    ],
+    description: "Managed community interaction with content moderation and engagement.",
+    focus: ["Content moderation", "Community tone"],
   },
   {
     id: "exp-3",
-    title:
-      "Cinematic Video Maker & Brand Promoter of Bangla B2B2C.com",
+    title: "Bangla B2B2C — Video Maker & Promoter",
     period: "2020 – 2022",
-    description:
-      "Created cinematic promotional content that improves brand reach and digital presence.",
-    focus: [
-      "Cinematic editing and narrative continuity",
-      "Caption strategy for fast comprehension",
-      "Brand-first promotion for B2B2C audiences",
-    ],
+    description: "Created cinematic promotional content for brand reach and digital presence.",
+    focus: ["Cinematic editing", "Caption strategy"],
   },
   {
     id: "exp-4",
-    title: "Business Promoter of Afifa Enterprise (Gazipur, Dhaka)",
+    title: "Afifa Enterprise — Business Promoter",
     period: "2018 – 2020",
-    description:
-      "Supported business visibility and promotional communication with editorial visuals and message clarity.",
-    focus: [
-      "Promotional content creation and refinement",
-      "Platform-optimized reel formats",
-      "Consistent communication tone",
-    ],
+    description: "Supported business visibility with editorial visuals and clear messaging.",
+    focus: ["Promo content", "Platform formats"],
   },
 ] as TimelineRole[];
-
