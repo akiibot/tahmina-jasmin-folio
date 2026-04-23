@@ -15,7 +15,7 @@ function FeaturedWorkContent() {
           <SectionHeading
             kicker="FEATURED WORK"
             title="Cinematic edits and voice-led storytelling."
-            subtitle="Click any project to play inline."
+            subtitle="Videos play directly below. Hover for details."
           />
         </Reveal>
 
